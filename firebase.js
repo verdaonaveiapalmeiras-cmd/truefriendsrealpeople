@@ -1,13 +1,16 @@
 // FIREBASE APP
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-// FIREBASE AUTH
+// AUTH
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-// FIREBASE FIRESTORE
+// FIRESTORE
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// CONFIG FIREBASE
+// STORAGE
+import { getStorage } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+// CONFIG
 const firebaseConfig = {
   apiKey: "AIzaSyD7vGS1Xpzw145DziLUt9FwyClV7s1lebI",
   authDomain: "true-friendsreal.firebaseapp.com",
@@ -17,10 +20,10 @@ const firebaseConfig = {
   appId: "1:219770057635:web:73ba7e5ac6a095b9b06016"
 };
 
-// INICIAR FIREBASE
+// INICIAR
 const app = initializeApp(firebaseConfig);
 
 // EXPORTS
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-
+export const storage = getStorage(app);

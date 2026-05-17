@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRUE FRIENDS</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial, sans-serif;
+background:#dfe6f1;
+color:#222;
+}
+
+.hidden{display:none;}
+
+.container{
+max-width:600px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:#fff;
+padding:20px;
+border-radius:15px;
+margin-bottom:15px;
+box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+input,textarea{
+width:100%;
+padding:12px;
+margin:8px 0;
+border-radius:10px;
+border:none;
+background:#eef2f7;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:8px;
+border:none;
+border-radius:10px;
+background:#2c3e66;
+color:#fff;
+font-weight:bold;
+cursor:pointer;
+}
+
+.feed{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- LOGIN -->
+<div id="loginPage">
+<div class="card">
+<h2>Login</h2>
+
+<input type="email" id="loginEmail" placeholder="Email">
+<input type="password" id="loginSenha" placeholder="Senha">
+
+<button id="loginBtn">Entrar</button>
+</div>
+
+<div class="card">
+<p>Não tem conta?</p>
+<button onclick="document.getElementById('loginPage').classList.add('hidden');document.getElementById('cadastroPage').classList.remove('hidden');">
+Criar conta
+</button>
+</div>
+</div>
+
+<!-- CADASTRO -->
+<div id="cadastroPage" class="hidden">
+<div class="card">
+<h2>Cadastro</h2>
+
+<input type="text" id="cadNome" placeholder="Nome">
+<input type="email" id="cadEmail" placeholder="Email">
+<input type="password" id="cadSenha" placeholder="Senha">
+
+<button id="cadastroBtn">Cadastrar</button>
+
+<button onclick="document.getElementById('cadastroPage').classList.add('hidden');document.getElementById('loginPage').classList.remove('hidden');">
+Voltar
+</button>
+
+</div>
+</div>
+
+<!-- FEED -->
+<div id="feedPage" class="hidden">
+
+<div class="card">
+<h3 id="nomeUsuario"></h3>
+
+<textarea id="textoPost" placeholder="Escreva algo..."></textarea>
+<input type="file" id="arquivoPost">
+
+<button id="publicarBtn">Publicar</button>
+<button id="logoutBtn">Sair</button>
+
+</div>
+
+<div id="feed" class="feed"></div>
+
+</div>
+
+</div>
+
+<!-- APP JS -->
+<script type="module" src="./js/app.js"></script>
+
+</body>
+</html>
+

@@ -13,44 +13,77 @@ box-sizing:border-box;
 }
 
 body{
-font-family:Arial, sans-serif;
+font-family:Arial,sans-serif;
 background:#dfe6f1;
 color:#222;
 }
 
-.hidden{display:none;}
-
 .container{
+width:100%;
 max-width:600px;
 margin:auto;
-padding:20px;
+padding:15px;
+}
+
+.hidden{
+display:none;
+}
+
+.logo{
+text-align:center;
+margin:20px 0;
+}
+
+.logo h1{
+color:#2c3e66;
+font-size:32px;
 }
 
 .card{
 background:#fff;
 padding:20px;
-border-radius:15px;
-margin-bottom:15px;
-box-shadow:0 4px 15px rgba(0,0,0,0.1);
+border-radius:20px;
+margin-bottom:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
 }
 
 input,textarea{
 width:100%;
-padding:12px;
-margin:8px 0;
-border-radius:10px;
+padding:14px;
 border:none;
-background:#eef2f7;
+border-radius:14px;
+margin-bottom:12px;
+background:#edf2fa;
+font-size:15px;
+outline:none;
+}
+
+textarea{
+min-height:100px;
+resize:none;
 }
 
 button{
 width:100%;
-padding:12px;
-margin-top:8px;
+padding:14px;
 border:none;
-border-radius:10px;
+border-radius:14px;
 background:#2c3e66;
 color:#fff;
+font-weight:bold;
+cursor:pointer;
+margin-bottom:10px;
+font-size:15px;
+}
+
+button:hover{
+opacity:.9;
+}
+
+.link{
+margin-top:10px;
+text-align:center;
+color:#2c3e66;
 font-weight:bold;
 cursor:pointer;
 }
@@ -58,11 +91,138 @@ cursor:pointer;
 .feed{
 display:flex;
 flex-direction:column;
-gap:15px;
+gap:20px;
+}
+
+.post{
+background:#fff;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.post-header{
+display:flex;
+align-items:center;
+gap:10px;
+padding:15px;
+}
+
+.post-user{
+font-weight:bold;
+color:#2c3e66;
+}
+
+.post-avatar{
+width:45px;
+height:45px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.post-text{
+padding:0 15px 15px;
+font-size:16px;
+line-height:1.5;
+}
+
+.post img{
+width:100%;
+max-height:500px;
+object-fit:cover;
+}
+
+.post video{
+width:100%;
+}
+
+.chat-container{
+background:#fff;
+border-radius:20px;
+overflow:hidden;
+height:75vh;
+display:flex;
+flex-direction:column;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.chat-mensagens{
+flex:1;
+overflow-y:auto;
+padding:15px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.mensagem{
+padding:12px;
+border-radius:18px;
+max-width:80%;
+word-wrap:break-word;
+}
+
+.enviada{
+background:#2c3e66;
+color:#fff;
+align-self:flex-end;
+}
+
+.recebida{
+background:#edf2fa;
+align-self:flex-start;
+}
+
+.chat-top{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:5px;
+}
+
+.chat-avatar{
+width:35px;
+height:35px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.chat-input{
+display:flex;
+gap:10px;
+padding:15px;
+border-top:1px solid #eee;
+}
+
+.chat-input input{
+flex:1;
+margin:0;
+}
+
+.msg{
+margin-top:10px;
+text-align:center;
+color:red;
+font-weight:bold;
+}
+
+.top-buttons{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.top-buttons button{
+flex:1;
+}
+
+.preview{
+width:100%;
+border-radius:15px;
+margin-top:10px;
 }
 
 </style>
-
 </head>
 
 <body>
@@ -70,53 +230,84 @@ gap:15px;
 <div class="container">
 
 <!-- LOGIN -->
-<div id="loginPage">
-<div class="card">
-<h2>Login</h2>
 
-<input type="email" id="loginEmail" placeholder="Email">
+<div id="loginPage">
+
+<div class="logo">
+<h1>TRUE FRIENDS</h1>
+</div>
+
+<div class="card">
+
+<input type="email" id="loginEmail" placeholder="E-mail">
+
 <input type="password" id="loginSenha" placeholder="Senha">
 
 <button id="loginBtn">Entrar</button>
+
+<div class="link" id="showCadastro">
+Criar conta
 </div>
 
-<div class="card">
-<p>Não tem conta?</p>
-<button onclick="document.getElementById('loginPage').classList.add('hidden');document.getElementById('cadastroPage').classList.remove('hidden');">
-Criar conta
-</button>
+<div id="loginMsg" class="msg"></div>
+
 </div>
+
 </div>
 
 <!-- CADASTRO -->
+
 <div id="cadastroPage" class="hidden">
+
+<div class="logo">
+<h1>TRUE FRIENDS</h1>
+</div>
+
 <div class="card">
-<h2>Cadastro</h2>
 
 <input type="text" id="cadNome" placeholder="Nome">
-<input type="email" id="cadEmail" placeholder="Email">
+
+<input type="email" id="cadEmail" placeholder="E-mail">
+
 <input type="password" id="cadSenha" placeholder="Senha">
 
-<button id="cadastroBtn">Cadastrar</button>
+<input type="file" id="fotoPerfil" accept="image/*">
 
-<button onclick="document.getElementById('cadastroPage').classList.add('hidden');document.getElementById('loginPage').classList.remove('hidden');">
-Voltar
-</button>
+<button id="cadastroBtn">Criar conta</button>
+
+<div class="link" id="showLogin">
+Já tem conta?
+</div>
+
+<div id="cadMsg" class="msg"></div>
 
 </div>
+
 </div>
 
 <!-- FEED -->
+
 <div id="feedPage" class="hidden">
 
+<div class="logo">
+<h1>TRUE FRIENDS</h1>
+</div>
+
 <div class="card">
+
 <h3 id="nomeUsuario"></h3>
 
 <textarea id="textoPost" placeholder="Escreva algo..."></textarea>
-<input type="file" id="arquivoPost">
 
+<input type="file" id="arquivoPost" accept="image/*,video/*">
+
+<div id="previewArea"></div>
+
+<div class="top-buttons">
 <button id="publicarBtn">Publicar</button>
+<button id="abrirConversas">Conversas</button>
 <button id="logoutBtn">Sair</button>
+</div>
 
 </div>
 
@@ -124,11 +315,498 @@ Voltar
 
 </div>
 
+<!-- CHAT -->
+
+<div id="chatPage" class="hidden">
+
+<button id="voltarConversas">
+Voltar
+</button>
+
+<div class="chat-container">
+
+<div id="chatMensagens" class="chat-mensagens"></div>
+
+<div class="chat-input">
+
+<input type="text" id="mensagemInput" placeholder="Digite uma mensagem">
+
+<button id="enviarBtn">
+Enviar
+</button>
+
 </div>
 
-<!-- APP JS -->
-<script type="module" src="js/app.js"></script>
+</div>
+
+</div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+
+import {
+getAuth,
+onAuthStateChanged,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+signOut,
+updateProfile
+} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+
+import {
+getFirestore,
+collection,
+addDoc,
+query,
+orderBy,
+onSnapshot,
+serverTimestamp,
+doc,
+setDoc
+} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+
+import {
+getStorage,
+ref,
+uploadBytes,
+getDownloadURL
+} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js";
+
+/* FIREBASE */
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyD7vGS1Xpzw145DziLUt9FwyClV7s1lebI",
+
+authDomain: "true-friendsreal.firebaseapp.com",
+
+projectId: "true-friendsreal",
+
+storageBucket: "true-friendsreal.appspot.com",
+
+messagingSenderId: "219770057635",
+
+appId: "1:219770057635:web:73ba7e5ac6a095b9b06016"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+const storage = getStorage(app);
+
+/* DOM */
+
+const loginEmail = document.getElementById('loginEmail');
+const loginSenha = document.getElementById('loginSenha');
+const loginMsg = document.getElementById('loginMsg');
+
+const cadNome = document.getElementById('cadNome');
+const cadEmail = document.getElementById('cadEmail');
+const cadSenha = document.getElementById('cadSenha');
+const fotoPerfil = document.getElementById('fotoPerfil');
+const cadMsg = document.getElementById('cadMsg');
+
+const nomeUsuario = document.getElementById('nomeUsuario');
+
+const textoPost = document.getElementById('textoPost');
+const arquivoPost = document.getElementById('arquivoPost');
+const previewArea = document.getElementById('previewArea');
+
+const feed = document.getElementById('feed');
+
+const chatMensagens = document.getElementById('chatMensagens');
+const mensagemInput = document.getElementById('mensagemInput');
+
+let currentUser = null;
+
+/* TROCA DE TELAS */
+
+function show(id){
+
+document.getElementById('loginPage').classList.add('hidden');
+document.getElementById('cadastroPage').classList.add('hidden');
+document.getElementById('feedPage').classList.add('hidden');
+document.getElementById('chatPage').classList.add('hidden');
+
+document.getElementById(id).classList.remove('hidden');
+
+}
+
+/* NAVEGAÇÃO */
+
+document.getElementById('showCadastro').onclick = ()=>{
+
+show('cadastroPage');
+
+};
+
+document.getElementById('showLogin').onclick = ()=>{
+
+show('loginPage');
+
+};
+
+document.getElementById('abrirConversas').onclick = ()=>{
+
+show('chatPage');
+
+loadMensagens();
+
+};
+
+document.getElementById('voltarConversas').onclick = ()=>{
+
+show('feedPage');
+
+};
+
+/* CADASTRO */
+
+document.getElementById('cadastroBtn').onclick = async ()=>{
+
+try{
+
+const userCredential = await createUserWithEmailAndPassword(
+auth,
+cadEmail.value,
+cadSenha.value
+);
+
+const user = userCredential.user;
+
+let fotoURL = "";
+
+const arquivo = fotoPerfil.files[0];
+
+if(arquivo){
+
+const storageRef = ref(
+storage,
+"perfil/" + user.uid + "_" + arquivo.name
+);
+
+await uploadBytes(storageRef, arquivo);
+
+fotoURL = await getDownloadURL(storageRef);
+
+}
+
+await updateProfile(user,{
+displayName: cadNome.value,
+photoURL: fotoURL
+});
+
+await setDoc(doc(db,"usuarios",user.uid),{
+
+nome: cadNome.value,
+email: cadEmail.value,
+foto: fotoURL,
+uid: user.uid,
+createdAt: serverTimestamp()
+
+});
+
+cadMsg.innerText = "Conta criada com sucesso";
+
+}catch(e){
+
+cadMsg.innerText = e.message;
+
+}
+
+};
+
+/* LOGIN */
+
+document.getElementById('loginBtn').onclick = async ()=>{
+
+try{
+
+await signInWithEmailAndPassword(
+auth,
+loginEmail.value,
+loginSenha.value
+);
+
+}catch(e){
+
+loginMsg.innerText = e.message;
+
+}
+
+};
+
+/* LOGOUT */
+
+document.getElementById('logoutBtn').onclick = ()=>{
+
+signOut(auth);
+
+};
+
+/* AUTH */
+
+onAuthStateChanged(auth,(user)=>{
+
+if(user){
+
+currentUser = user;
+
+nomeUsuario.innerText =
+"Olá, " + (user.displayName || user.email);
+
+show('feedPage');
+
+loadFeed();
+
+}else{
+
+show('loginPage');
+
+}
+
+});
+
+/* PREVIEW */
+
+arquivoPost.addEventListener('change',()=>{
+
+previewArea.innerHTML = "";
+
+const file = arquivoPost.files[0];
+
+if(!file) return;
+
+const url = URL.createObjectURL(file);
+
+if(file.type.includes("image")){
+
+previewArea.innerHTML =
+`<img src="${url}" class="preview">`;
+
+}
+
+if(file.type.includes("video")){
+
+previewArea.innerHTML =
+`
+<video controls class="preview">
+<source src="${url}">
+</video>
+`;
+
+}
+
+});
+
+/* PUBLICAR */
+
+document.getElementById('publicarBtn').onclick = async ()=>{
+
+try{
+
+const texto = textoPost.value;
+
+const arquivo = arquivoPost.files[0];
+
+let arquivoURL = "";
+let tipo = "";
+
+if(arquivo){
+
+const storageRef = ref(
+storage,
+"posts/" + Date.now() + "_" + arquivo.name
+);
+
+await uploadBytes(storageRef, arquivo);
+
+arquivoURL = await getDownloadURL(storageRef);
+
+tipo = arquivo.type;
+
+}
+
+await addDoc(collection(db,"posts"),{
+
+nome: currentUser.displayName || currentUser.email,
+
+foto: currentUser.photoURL || "",
+
+texto: texto,
+
+arquivo: arquivoURL,
+
+tipo: tipo,
+
+createdAt: serverTimestamp()
+
+});
+
+textoPost.value = "";
+arquivoPost.value = "";
+previewArea.innerHTML = "";
+
+}catch(e){
+
+alert(e.message);
+
+}
+
+};
+
+/* FEED */
+
+function loadFeed(){
+
+const q = query(
+collection(db,"posts"),
+orderBy("createdAt","desc")
+);
+
+onSnapshot(q,(snap)=>{
+
+feed.innerHTML = "";
+
+snap.forEach((d)=>{
+
+const p = d.data();
+
+let media = "";
+
+if(p.tipo?.includes("image")){
+
+media = `<img src="${p.arquivo}">`;
+
+}
+
+if(p.tipo?.includes("video")){
+
+media = `
+<video controls>
+<source src="${p.arquivo}">
+</video>
+`;
+
+}
+
+feed.innerHTML += `
+
+<div class="post">
+
+<div class="post-header">
+
+<img
+src="${p.foto || 'https://via.placeholder.com/45'}"
+class="post-avatar"
+>
+
+<div class="post-user">
+${p.nome}
+</div>
+
+</div>
+
+<div class="post-text">
+${p.texto || ""}
+</div>
+
+${media}
+
+</div>
+
+`;
+
+});
+
+});
+
+}
+
+/* CHAT */
+
+function loadMensagens(){
+
+const q = query(
+collection(db,"mensagens"),
+orderBy("createdAt","asc")
+);
+
+onSnapshot(q,(snap)=>{
+
+chatMensagens.innerHTML = "";
+
+snap.forEach((d)=>{
+
+const m = d.data();
+
+const classe =
+m.uid === currentUser.uid
+? "enviada"
+: "recebida";
+
+chatMensagens.innerHTML += `
+
+<div class="mensagem ${classe}">
+
+<div class="chat-top">
+
+<img
+src="${m.foto || 'https://via.placeholder.com/35'}"
+class="chat-avatar"
+>
+
+<b>${m.nome}</b>
+
+</div>
+
+${m.texto}
+
+</div>
+
+`;
+
+});
+
+chatMensagens.scrollTop =
+chatMensagens.scrollHeight;
+
+});
+
+}
+
+/* ENVIAR MENSAGEM */
+
+document.getElementById('enviarBtn').onclick = async ()=>{
+
+if(!mensagemInput.value) return;
+
+await addDoc(collection(db,"mensagens"),{
+
+uid: currentUser.uid,
+
+nome: currentUser.displayName || currentUser.email,
+
+foto: currentUser.photoURL || "",
+
+texto: mensagemInput.value,
+
+createdAt: serverTimestamp()
+
+});
+
+mensagemInput.value = "";
+
+};
+
+</script>
 
 </body>
 </html>
-
